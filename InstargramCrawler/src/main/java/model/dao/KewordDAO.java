@@ -13,6 +13,11 @@ import util.DBConnManager;
 import util.MetaDataLoader;
 
 public class KewordDAO {
+	/**
+	 * 키워드 생성 메소드
+	 * @param ldongList
+	 * @return
+	 */
 	public List<KewordDTO> getKeword(List<String> ldongList) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("search.selectAll");
 		for(int i=0; i<ldongList.size();i++) {
@@ -47,6 +52,10 @@ public class KewordDAO {
 		}
 		return kewordList;
 	}
+	/**
+	 * 한 지역 법정동리스트 검색
+	 * @return
+	 */
 	public List<String> getLdongList() {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("search.ldongList");
 		Connection con = null;
