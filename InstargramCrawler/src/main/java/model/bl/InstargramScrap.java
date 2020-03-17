@@ -2,6 +2,7 @@ package model.bl;
 
 
 
+import java.awt.Container;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.Date;
@@ -131,13 +132,23 @@ public class InstargramScrap {
 								String commentStr = "0";
 								try {
 									likeStr = element2.findElement(By.cssSelector(Tag.css_listColLike)).getText();
-								}catch(NoSuchElementException | StaleElementReferenceException e) {}
+									content.setGood(Integer.parseInt(likeStr.replaceAll(",", "")));
+								}catch(NoSuchElementException | StaleElementReferenceException e) {
+									
+								}catch(NumberFormatException e) {
+									likeStr = likeStr.replaceAll(".", "").replaceAll("천", "").replaceAll("만", "");
+									content.setGood(Integer.parseInt(likeStr));
+								}
 								try {
 									commentStr = element2.findElement(By.cssSelector(Tag.css_listColComment)).getText();
-								}catch(NoSuchElementException | StaleElementReferenceException e) {}
+									content.setCommentNum(Integer.parseInt(commentStr.replaceAll(",", "")));
+								}catch(NoSuchElementException | StaleElementReferenceException e) {
+									
+								}catch(NumberFormatException e) {
+									likeStr = likeStr.replaceAll(".", "").replaceAll("천", "").replaceAll("만", "");
+									content.setGood(Integer.parseInt(likeStr));
+								}						
 								
-								content.setGood(Integer.parseInt(likeStr.replaceAll(",", "")));
-								content.setCommentNum(Integer.parseInt(commentStr.replaceAll(",", "")));
 								contentMap.put(content.getContentAdr(), content);
 								tis.printMessage(dto.getHashTagNm() +" [" +contentMap.size()+"/"+dto.getContentNum()+"] "+ " 링크 수집중....");
 							}catch(NoSuchElementException | StaleElementReferenceException e) {
