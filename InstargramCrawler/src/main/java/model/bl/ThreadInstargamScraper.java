@@ -182,7 +182,7 @@ public class ThreadInstargamScraper extends Thread {
 		for(HashTagDTO hashTag : searchListURL) {
 			printMessage("해시태그 : "+hashTag.getHashTagNm()+" DB 작업중...");
 			hashTagDAO.insertHashTag(hashTag);
-			hashTagDAO.insertConHashTag(hashTag.getBizesId(),hashTag.getHashTagAdr());
+			
 			for(String key : hashTag.getContentMap().keySet()) {
 				ContentDTO content = hashTag.getContentMap().get(key);
 				printMessage("게시글 : "+hashTag.getHashTagNm()+"->"+content.getContentAdr()+" DB 작업중...");
@@ -198,7 +198,7 @@ public class ThreadInstargamScraper extends Thread {
 					hashTagDAO.insertSubHash(subHashTagDTO);
 				}
 			}
-			
+			hashTagDAO.insertConHashTag(hashTag.getBizesId(),hashTag.getHashTagAdr());
 		}
 	}
 	private void driverSetting() {

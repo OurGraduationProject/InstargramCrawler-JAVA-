@@ -84,7 +84,9 @@ public class HashTagDAO {
 			rtn = ps.executeUpdate();
 		} catch (SQLIntegrityConstraintViolationException e) {
 			
-		}catch (SQLException e) {
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -111,7 +113,9 @@ public class HashTagDAO {
 			rtn = ps.executeUpdate();
 		} catch (SQLIntegrityConstraintViolationException e) {
 			
-		}catch (SQLException e) {
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch(Exception e) {
@@ -140,7 +144,9 @@ public class HashTagDAO {
 			rtn = ps.executeUpdate();
 		} catch (SQLIntegrityConstraintViolationException e) {
 			
-		}catch (SQLException e) {
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch(Exception e) {
@@ -164,7 +170,9 @@ public class HashTagDAO {
 			rtn = ps.executeUpdate();
 		}catch (SQLIntegrityConstraintViolationException e) {
 			
-		}catch (SQLException e) {
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch(Exception e) {
@@ -191,7 +199,9 @@ public class HashTagDAO {
 			rtn = ps.executeUpdate();
 		} catch (SQLIntegrityConstraintViolationException e) {
 			
-		}catch (SQLException e) {
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch(Exception e) {
@@ -214,8 +224,10 @@ public class HashTagDAO {
 			ps.setString(2,subHashTagDTO.getContentAdr());
 			
 			rtn = ps.executeUpdate();
-		}catch (SQLIntegrityConstraintViolationException | CommunicationsException e)  {
-			System.err.println("[ DB ] DB저장에서 잔오류가 발생하였습니다. 정상 작동 중인지 확인해주세요.");
+		}catch (SQLIntegrityConstraintViolationException e) {
+			
+		}catch (CommunicationsException e)  {
+			System.err.println("[ DB ] DB와 잠시 연결이 끊겼습니다.");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

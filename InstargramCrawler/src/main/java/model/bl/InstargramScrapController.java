@@ -17,7 +17,7 @@ public class InstargramScrapController {
 	public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	public static final int REPEAT_LIMIT = 10; // 스크롤 반복 횟수 제한(10번 반복동안 데이터 수 변환 없으면 그만 내림)
 	public static final int COMMENT_UNIT = 12;//기본 댓글 출력 개수
-	public static final int hashSearchCount = 1;
+	public static final int hashSearchCount = 3;
 	
 	public InstargramScrapController(int threadNum, List<String> dongList) {
 		this.threadNum = threadNum;
