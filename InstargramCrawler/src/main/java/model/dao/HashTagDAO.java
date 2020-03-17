@@ -16,7 +16,11 @@ import util.DBConnManager;
 import util.MetaDataLoader;
 
 public class HashTagDAO {
-	
+	/**
+	 * <pre>해시태그테이블 해시태그 존재유무 체크</pre>
+	 * @param hashTag
+	 * @return
+	 */
 	public String checkHashTag(String hashTag) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("hashTag.checkHashTag");
 		
@@ -44,6 +48,13 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * <pre>연결테이블 상가id, 해시태그 정보 존재 유무</pre>
+	 * @param bizesId
+	 * @param hashTag
+	 * @return
+	 */
 	public String checkConHashTag(String bizesId, String hashTag) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("bizesHashTagCon.checkConHashTag");
 		Connection con = null;
@@ -70,6 +81,13 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * <pre>연결테이블(상가-hash) 삽입</pre>
+	 * @param bizesId
+	 * @param hashTag
+	 * @return
+	 */
 	public int insertConHashTag(String bizesId, String hashTag) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("bizesHashTagCon.insertConHashTag");
 		Connection con = null;
@@ -98,6 +116,12 @@ public class HashTagDAO {
 		return rtn;
 	}
 
+	/**
+	 * 
+	 * <pre>해시태그 삽입</pre>
+	 * @param hashTagDTO
+	 * @return
+	 */
 	public int insertHashTag(HashTagDTO hashTagDTO) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("hashTag.insertHashTag");
 		Connection con = null;
@@ -125,6 +149,13 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * 
+	 * <pre>게시글 삽입</pre>
+	 * @param content
+	 * @return
+	 */
 	public int insertContent(ContentDTO content) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("content.insertContent");
 		Connection con = null;
@@ -156,6 +187,14 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * 
+	 * <pre>연결 테이블(해시-게시글) 삽입</pre>
+	 * @param hashTagAdr
+	 * @param contentAdr
+	 * @return
+	 */
 	public int insertConContent(String hashTagAdr, String contentAdr) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("hashTagContentCon.insertConContent");
 		Connection con = null;
@@ -182,6 +221,13 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * 
+	 * <pre>댓글 삽입</pre>
+	 * @param commentDTO
+	 * @return
+	 */
 	public int insertComment(CommentDTO commentDTO) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("comment.insertComment");
 		Connection con = null;
@@ -211,6 +257,13 @@ public class HashTagDAO {
 		}
 		return rtn;
 	}
+
+	/**
+	 * 
+	 * <pre>서브해시 삽입</pre>
+	 * @param subHashTagDTO
+	 * @return
+	 */
 	public int insertSubHash(SubHashTagDTO subHashTagDTO) {
 		String query = MetaDataLoader.getDbCmdProfile().getProperty("subHashTag.insertSubHashTag");
 		Connection con = null;
