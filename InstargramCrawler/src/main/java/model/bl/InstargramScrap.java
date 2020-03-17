@@ -30,15 +30,29 @@ import model.dto.SubHashTagDTO;
 
 public class InstargramScrap {
 	
-	
+	//초기 시작 URL
 	private String seedURL = "https://www.instagram.com";
+	//자신을 사용할 스크래퍼
 	private ThreadInstargamScraper tis;
+	//인스타그램 날짜 표현 형식을 설정할 객체
 	private SimpleDateFormat dateFormat;
+	
+	/**
+	 * 생성자 - 자신을 사용할 스크래퍼 설정
+	 * @param tis
+	 */
 	public InstargramScrap(ThreadInstargamScraper tis) {
 		// TODO Auto-generated constructor stub
 		this.tis = tis;
 		dateFormat = new SimpleDateFormat(InstargramScrapController.DATE_FORMAT);
 	}
+	
+	/**
+	 * <pre>검색리스트를 수집/pre>
+	 * @param keword
+	 * @param driver
+	 * @return LinkedList
+	 */
 	public LinkedList<HashTagDTO> searchListScrap(String keword,WebDriver driver)  {
 		
 		LinkedList<HashTagDTO> searchList = new LinkedList<HashTagDTO>();
@@ -73,7 +87,12 @@ public class InstargramScrap {
 		return searchList;
 	
 	}
-
+	
+	/**
+	 * <pre> 게시물 링크 수집</pre>
+	 * @param dto
+	 * @param driver
+	 */
 	public void contentLinkScrap(HashTagDTO dto,WebDriver driver)  {
 		/*
 		 * 동적으로 스크롤 위치에 따라 배치되는 리스트(태그)가 다름.
@@ -141,6 +160,12 @@ public class InstargramScrap {
 		dto.setContentMap(contentMap);
 		tis.printMessage(dto.getHashTagNm() +" [" +contentMap.size()+"/"+dto.getContentNum()+"] "+ " 링크 수집 완료");
 	}
+	
+	/**
+	 * <pre>게시물 수집</pre>
+	 * @param dto
+	 * @param driver
+	 */
 	public void contentScrap(HashTagDTO dto,WebDriver driver) {
 		driver.manage().timeouts().implicitlyWait(1,TimeUnit.MINUTES);
 		HashMap<String,ContentDTO> map = dto.getContentMap();
@@ -217,6 +242,11 @@ public class InstargramScrap {
 		}
 	}
 	
+	/**
+	 * <pre> 태그 상수 </pre>
+	 * @author dongdang
+	 *
+	 */
 	private interface Tag {
 		String xpath_search = "//*[@id=\"react-root\"]/section/nav/div[2]/div/div/div[2]/input";
 		String xpath_searchList = "//*[@id=\"react-root\"]/section/nav/div[2]/div/div/div[2]/div[2]/div[2]/div/a";
