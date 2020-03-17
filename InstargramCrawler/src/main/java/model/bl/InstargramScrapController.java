@@ -29,7 +29,7 @@ public class InstargramScrapController {
 	public static final int hashSearchCount = 3;
 	
 	/**
-	 * 생성자 - 키워드 리스트 생성, 스레드 생성
+	 * 생성자 - 키워드 리스트 생성
 	 * @param threadNum
 	 * @param dongList
 	 */
@@ -37,10 +37,6 @@ public class InstargramScrapController {
 		this.threadNum = threadNum;
 		this.kewordMaker = new KewordMaker();
 		this.kewordList = (LinkedList<KewordDTO>) this.kewordMaker.make(dongList);
-		this.threadList = new ArrayList<ThreadInstargamScraper>();
-		for(int i=1; i<=this.threadNum; i++) {
-			threadList.add(createThreadScraper(i));
-		}
 		
 	}
 
@@ -68,6 +64,10 @@ public class InstargramScrapController {
 	 */
 	public void startScrap() {
 		if(new ThreadInstargamScraper("Scraper 0",this).instargramScrap()) {
+			this.threadList = new ArrayList<ThreadInstargamScraper>();
+			for(int i=1; i<=this.threadNum; i++) {
+				threadList.add(createThreadScraper(i));
+			}
 			for(ThreadInstargamScraper scraper : threadList) {
 				scraper.start();
 				System.out.println("[System] "+ scraper.getName()+" 구동 되었습니다.");
