@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.openqa.selenium.WebDriver;
+
 import model.dto.KewordDTO;
  
 
@@ -57,6 +59,16 @@ public class InstargramScrapController {
 	 */
 	public synchronized KewordDTO getKeword() throws NoSuchElementException {
 		return kewordList.poll();
+	}
+	
+	public synchronized void getUrl(WebDriver driver, String url) {
+		driver.get(url);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
