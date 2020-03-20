@@ -11,7 +11,7 @@ public class MainApp {
 		List<String> list = new ArrayList<String>();
 		list.add("석수동");//스크랩트할 법정동 추가
 
-		InstargramScrapController isc = new InstargramScrapController(5,list); //스레드 갯수와 스크랩할 법정동리스트
+		InstargramScrapController isc = new InstargramScrapController(3,list); //스레드 갯수와 스크랩할 법정동리스트
 		isc.startScrap();
 	}
 }
