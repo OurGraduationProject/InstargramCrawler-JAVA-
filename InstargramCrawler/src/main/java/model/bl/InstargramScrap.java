@@ -54,11 +54,11 @@ public class InstargramScrap {
 	 * @param driver
 	 * @return LinkedList
 	 */
-	public LinkedList<HashTagDTO> searchListScrap(String keword,WebDriver driver)  {
+	public LinkedList<HashTagDTO> searchListScrap(String keword,WebDriver driver) {
 		
 		LinkedList<HashTagDTO> searchList = new LinkedList<HashTagDTO>();
 		
-		driver.get(seedURL);
+		tis.getUrl(seedURL);
 		driver.findElement(By.xpath(Tag.xpath_search)).clear();
 		driver.findElement(By.xpath(Tag.xpath_search)).sendKeys(keword);
 		int count = 0;
@@ -94,12 +94,12 @@ public class InstargramScrap {
 	 * @param dto
 	 * @param driver
 	 */
-	public void contentLinkScrap(HashTagDTO dto,WebDriver driver)  {
+	public void contentLinkScrap(HashTagDTO dto,WebDriver driver) {
 		/*
 		 * 동적으로 스크롤 위치에 따라 배치되는 리스트(태그)가 다름.
 		 * 따라서, hashset 자료구조를 통해 중복을 제거하면서 반복적으로 저장을 시도함. 
 		 */
-		driver.get(seedURL+dto.getHashTagAdr());
+		tis.getUrl(seedURL+dto.getHashTagAdr());
 		
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		HashMap<String, ContentDTO> contentMap = new HashMap<String, ContentDTO>();
@@ -132,21 +132,20 @@ public class InstargramScrap {
 								String commentStr = "0";
 								try {
 									likeStr = element2.findElement(By.cssSelector(Tag.css_listColLike)).getText();
-									content.setGood(Integer.parseInt(likeStr.replaceAll(",", "")));
+									content.setGood(Integer.parseInt(likeStr.replaceAll(",", "").replace(".", "").replace("천", "").replace("만", "")));
 								}catch(NoSuchElementException | StaleElementReferenceException e) {
 									
 								}catch(NumberFormatException e) {
-									likeStr = likeStr.replaceAll(".", "").replaceAll("천", "").replaceAll("만", "");
-									content.setGood(Integer.parseInt(likeStr));
+									content.setGood(0);
+									tis.errMessage("숫자변환 예외가 발생하여 0으로 초기화하고 작업을 진행합니다.");
 								}
 								try {
 									commentStr = element2.findElement(By.cssSelector(Tag.css_listColComment)).getText();
-									content.setCommentNum(Integer.parseInt(commentStr.replaceAll(",", "")));
+									content.setCommentNum(Integer.parseInt(commentStr.replace(",", "").replace(".", "").replace("천", "").replace("만", "")));
 								}catch(NoSuchElementException | StaleElementReferenceException e) {
 									
 								}catch(NumberFormatException e) {
-									likeStr = likeStr.replaceAll(".", "").replaceAll("천", "").replaceAll("만", "");
-									content.setGood(Integer.parseInt(likeStr));
+									tis.errMessage("숫자변환 예외가 발생하여 0으로 초기화하고 작업을 진행합니다.");
 								}						
 								
 								contentMap.put(content.getContentAdr(), content);
@@ -183,7 +182,7 @@ public class InstargramScrap {
 		for(String key : map.keySet()) {
 			ContentDTO content = map.get(key);
 			tis.printMessage(content.getContentAdr()+"게시글을 수집합니다.");
-			driver.get(seedURL+content.getContentAdr());
+			tis.getUrl(seedURL+content.getContentAdr());
 			String id = ""; 
 			try {
 				id = driver.findElement(By.cssSelector(Tag.css_contentId)).getText();
