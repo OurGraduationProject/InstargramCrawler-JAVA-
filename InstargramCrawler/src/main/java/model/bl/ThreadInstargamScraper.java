@@ -131,7 +131,14 @@ public class ThreadInstargamScraper extends Thread {
 		return true;
 	}
 
-
+	/**
+	 * <pre>url요청 동기화</pre>
+	 * 
+	 */
+	public void getUrl(String url) {
+		controller.getUrl(driver, url);
+	}
+	
 	/**
 	 * <pre>
 	 * 테이블에 해시태그가 없으면 true, 있으면 false
@@ -226,7 +233,7 @@ public class ThreadInstargamScraper extends Thread {
 			}catch(NoSuchElementException e) {
 				errMessage(hashTag+"수집을 할 수 없어서, 다음 수집으로 진행하겠습니다.");
 			}
-		}catch(NoSuchElementException e) {
+		}catch(Exception e) {
 			this.errMessage(hashTag+"에서 error가 발생하였습니다.");
 			login.errorHandling(driver);
 		}
@@ -240,8 +247,6 @@ public class ThreadInstargamScraper extends Thread {
 		for(HashTagDTO hashTagDTO : searchListURL) {
 			this.scrap.contentLinkScrap(hashTagDTO, driver);
 		}
-
-		
 	}
 	
 	/**
