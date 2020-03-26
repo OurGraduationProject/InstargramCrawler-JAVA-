@@ -25,7 +25,7 @@ public class KewordDAO {
 			if(i!=ldongList.size()-1) {
 				query += ",";
 			}else {
-				query +=") order by bizesId asc;";
+				query +=") order by ldongNm asc;";
 			}
 		}
 		Connection con = null;
