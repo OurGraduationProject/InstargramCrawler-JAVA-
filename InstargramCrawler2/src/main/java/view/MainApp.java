@@ -1,21 +1,8 @@
 package view;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import model.bl.InstargramLogin;
-import model.bl.InstargramScrap;
-import model.exception.LoginException;
-import util.DBConnManager;
-import util.MetaDataLoader;
-import util.nsdi.CtprvnSearch;
 import model.bl.InstargramScrapController;
 import model.bl.KewordMaker;
 
@@ -32,7 +19,7 @@ public class MainApp {
 		
 		final String ctprvn = "경기도";  //시도
 		final String signgu = "안양시";  //시군구
-		final int loginCode = InstargramLogin.DEFAULT_CODE;
+		final int loginCode = InstargramLogin.FACEBOOK_CODE;
 //인스타그램 로그인 : InstargramLogin.DEFAULT_CODE
 //페이스북 소셜 로그인  : InstargramLogin.FACEBOOK_CODE;
 		final int threadNum = 3; //스레드 수
