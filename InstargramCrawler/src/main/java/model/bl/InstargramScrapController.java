@@ -63,12 +63,6 @@ public class InstargramScrapController {
 	
 	public synchronized void getUrl(WebDriver driver, String url) {
 		driver.get(url);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	/**
