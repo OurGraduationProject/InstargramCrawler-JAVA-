@@ -8,12 +8,13 @@ import java.net.URL;
 import java.net.URLEncoder;
 import com.google.gson.Gson;
 
+import util.MetaDataLoader;
 import util.nsdi.dto.AdmListResponseDTO;
 
 
 public class CtprvnSearch {
 	private final String URL = "http://openapi.nsdi.go.kr/nsdi/eios/service/rest/AdmService/admCodeList.json";
-	private final String KEY = "6829339fc9881fc8fe4f20";
+	private final String KEY = MetaDataLoader.getNsdiProfile().getProperty("ctprvnKey");
 	
 	public CtprvnSearch() {
 		// TODO Auto-generated constructor stub

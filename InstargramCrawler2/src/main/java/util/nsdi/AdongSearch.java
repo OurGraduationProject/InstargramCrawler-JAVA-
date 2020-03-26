@@ -10,13 +10,14 @@ import java.net.URLEncoder;
 
 import com.google.gson.Gson;
 
+import util.MetaDataLoader;
 import util.nsdi.dto.AdmListResponseDTO;
 
 
 public class AdongSearch {
 	
 	private final String URL = "http://openapi.nsdi.go.kr/nsdi/eios/service/rest/AdmService/admDongList.json";
-	private final String KEY = "8ee942b9e5dab17a38f590";
+	private final String KEY = MetaDataLoader.getNsdiProfile().getProperty("adongKey");
 	public AdongSearch() {
 		// TODO Auto-generated constructor stub
 	}
