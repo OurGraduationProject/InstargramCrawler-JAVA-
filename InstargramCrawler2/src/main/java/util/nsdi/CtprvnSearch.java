@@ -23,7 +23,6 @@ public class CtprvnSearch {
 	public AdmListResponseDTO urlGetSend() throws IOException {
 	
         URL url = new URL(URL+"?" + URLEncoder.encode("authkey","UTF-8")+"=" + KEY);
-        
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Accept", "application/json");

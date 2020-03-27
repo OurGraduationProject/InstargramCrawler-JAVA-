@@ -23,6 +23,7 @@ public class KewordMaker {
 	public LinkedList<String> dongMake(String ctprvn,String signgu) throws IOException {
 		LinkedList<String> list = new LinkedList<String>();
 		List<AdmDTO> admList = new CtprvnSearch().urlGetSend().getAdmVOList().getadmVOList();
+	
 		for(AdmDTO admDTO : admList) {
 			if(admDTO.getAdmCodeNm().equals(ctprvn)) {
 				List<AdmDTO> signguList = new SignguSearch().urlGetSend(admDTO.getAdmCode()).getAdmVOList().getadmVOList();
